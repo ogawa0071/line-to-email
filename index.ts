@@ -30,7 +30,7 @@ const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET || "");
 
 const groupId = process.env.GROUPID || "";
 const toEmailString = process.env.TOEMAIL || "";
-const toEmailArray = toEmailString.trim().split(",");
+const toEmailArray = toEmailString.replace(/\s/g, "").split(",");
 
 // Setup all LINE client and Express configurations.
 const clientConfig: ClientConfig = {
