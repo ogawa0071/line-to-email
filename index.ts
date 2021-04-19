@@ -85,7 +85,6 @@ const textEventHandler = async (
   console.log(event);
 
   const msg: sgMail.MailDataRequired = {
-    to: toEmailArray,
     from: { email: "line@line-to-email.futa.io", name: "line-to-email" },
     subject: "新着メッセージ",
     text: `${
@@ -153,7 +152,10 @@ ${event.message.text}`;
 
   console.log(msg);
 
-  await sgMail.send(msg);
+  for (const toEmail of toEmailArray) {
+    const msg_ = { ...msg, to: toEmail };
+    await sgMail.send(msg_);
+  }
 };
 
 // Register the LINE middleware.
