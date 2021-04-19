@@ -29,8 +29,9 @@ const storage = new Storage({
 const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET || "");
 
 const groupId = process.env.GROUPID || "";
-const toEmailString = process.env.TOEMAIL || "";
-const toEmailArray = toEmailString.replace(/\s/g, "").split(",");
+const toEmailArray = process.env.TOEMAIL
+  ? process.env.TOEMAIL.replace(/\s/g, "").split(",")
+  : "";
 
 // Setup all LINE client and Express configurations.
 const clientConfig: ClientConfig = {
